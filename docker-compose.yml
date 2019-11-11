@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  minio:
+    image: minio/minio 
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./service/minio:/data
+    environment:
+      MINIO_ACCESS_KEY: minio_access_key
+      MINIO_SECRET_KEY: minio_secret_key
+    command: server /data
+  web:
+    build: ./service/interface/
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./service/interface:/src
+    ports:
+      - "8000:8000"
+    depends_on:
+      - minio 
+  flask_test:
+    build: ./service/flask_test
+    ports:
+      - "8001:5000"
