@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text tools</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+	<script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+<header class="text-center">
+    <h1>Project</h1>
+</header>
+<hr>
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Wpisz tekst</label>
+        <textarea class="form-control" id="input" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Zmodyfikowany tekst</label>
+        <textarea class="form-control" id="output" rows="3"></textarea>
+    </div>
+</form>
+<div class="container">
+    <button class="btn btn-primary btn-xl" id="mirror">Mirror text</button>
+    <button class="btn btn-primary btn-xl" id="pokemon">PoKeMon TeXt</button>
+    <button class="btn btn-primary btn-xl" id="letters">Count letters</button>
+    <button class="btn btn-primary btn-xl" id="words">Count words</button>
+</div>
+    <script>
+	$("button").click(function() {
+    $.post(this.id+"/", {text: $('#input').val()}).done(function( data ) {
+      $( "#output" ).html( data );
+    });
+    });
+</script>
+</body>
+</html>
